@@ -6,7 +6,9 @@ import {
     Button,
     Grid,
 } from "@material-ui/core";
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'; import "./item.css";
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import "./item.css";
 
 const Item = ({ item, asRequest }) => {
     // console.log(`${JSON.stringify(item)}, ${item.item.name}`)
@@ -30,7 +32,7 @@ const Item = ({ item, asRequest }) => {
 
                 {asRequest &&
                     <>
-                        <Grid container item xs={12}>
+                        <Grid container item xs={12} spacing={1}>
                             <Grid item xs={10}>
                                 <Typography
                                     className="price"
@@ -48,7 +50,51 @@ const Item = ({ item, asRequest }) => {
                                     {`RM${item.price}`}
                                 </Typography>
                             </Grid>
+
+                            <Grid container item xs={12} className="center">
+                                <Grid item xs={3}>
+                                    <Button
+                                        size="small"
+                                        variant="outlined"
+                                        className="increase-product-quantity"
+                                        onClick={() => console.log('increase')}
+                                    >
+                                        +
+                                </Button>
+                                </Grid>
+                                <Grid item xs={2} >
+                                    <Typography className="center">&nbsp;{2}&nbsp;</Typography>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Button
+                                        size="small"
+                                        color="secondary"
+                                        variant="outlined"
+                                        onClick={() => console.log('decrease')}
+                                    >
+                                        -
+                                </Button>
+                                </Grid>
+                            </Grid>
+
+
+                            <Grid item xs={12} className="center">
+                                <Button
+                                    size="large"
+                                    className="button"
+                                    onClick={() => {
+                                        console.log('button click')
+                                    }}
+                                >
+                                    <ShoppingBasketIcon /> Add to basket
+              </Button>
+                            </Grid>
+
                         </Grid>
+
+
+
+
                     </>
 
 

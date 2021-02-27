@@ -17,7 +17,7 @@ export const createRequest = async (req, res) => {
 
     try {
         const doc = await newRequest.save().then( doc => {
-            req.body.items.forEach(async (item) => {
+            items.forEach(async (item) => {
                 var { id, quantity } = item;
                 var newItemRequest = new ItemRequest({
                     request: doc.id,
