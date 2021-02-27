@@ -8,6 +8,7 @@ import RequestDetail from "../Request/RequestDetail";
 import RequestForm from "../Forms/RequestForm";
 import UserIndex from '../User/UserIndex.js';
 import SignUpForm from "../Forms/SignUpForm";
+import DonationPage from "../../pages/DonationPage";
 
 
 // Data
@@ -15,7 +16,7 @@ import UserData from '../../hooks/UserAPI.js';
 
 const TemporaryTabs = props => {
 
-const [selectedTab, setSelectedTab] = useState(0);
+const [selectedTab, setSelectedTab] = useState(7);
 const [userData, donationDetails, requestDetails] = UserData(null);
 
 const handleChange = (event, newValue) => {
@@ -34,6 +35,7 @@ return (
 <Tab label="New Request Form" />
 <Tab label="User" />
 <Tab label="Sign Up Form" />
+<Tab label="Donation Page" />
 </Tabs>
 </AppBar>
 
@@ -44,6 +46,7 @@ return (
 {selectedTab === 4 && <RequestForm/>}
 {selectedTab === 5 && <UserIndex userData={userData} donationData={donationDetails} requestData={requestDetails}/>}
 {selectedTab === 6 && <SignUpForm/>}
+{selectedTab === 7 && <DonationPage/>}
 </>
 );
 };
