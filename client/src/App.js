@@ -7,23 +7,7 @@ import {
 import { makeStyles, CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core';
 
 import HomePage from "./pages/HomePage";
-
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#026670",
-      light: '#9FEDD7'
-    },
-    secondary: {
-      main: "#FCE181",
-      light: '#FEF9C7'
-    },
-    background: {
-      default: "#f4f5fd"
-    },
-  },
-})
+import theme from "./components/theme"
 
 function App() {
   // console.log(RequestsData.requests)

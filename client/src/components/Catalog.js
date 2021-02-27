@@ -3,6 +3,7 @@ import Item from "../components/Item/Item";
 import Request from "../components/Request/Request";
 
 const Catalog = ({type,data}) => {
+    console.log(`catalog ${JSON.stringify( data)}`)
     return (
         <div>
             <Container >

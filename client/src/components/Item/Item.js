@@ -5,6 +5,7 @@ import {
     Typography,
     Button,
     Grid,
+    Chip,
 } from "@material-ui/core";
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
@@ -16,7 +17,7 @@ const Item = ({ item, asRequest }) => {
         <Card className="item-card">
             <CardMedia
                 component="img"
-                height="260"
+                height="200"
                 className="card-image"
             // image={product.media.source}
             />
@@ -24,11 +25,13 @@ const Item = ({ item, asRequest }) => {
                 <Typography
                     className="title"
                     gutterBottom
-                    variant="h5"
+                    // variant="h5"
                     component="h2"
                 >
                     {item.name}
                 </Typography>
+
+
 
                 {asRequest &&
                     <>
@@ -46,7 +49,8 @@ const Item = ({ item, asRequest }) => {
                                 <Typography
                                     className="price"
                                     gutterBottom
-                                    component="h2">
+                                // component="h2"
+                                >
                                     {`RM${item.price}`}
                                 </Typography>
                             </Grid>
@@ -87,38 +91,40 @@ const Item = ({ item, asRequest }) => {
                                     }}
                                 >
                                     <ShoppingBasketIcon /> Add to basket
-              </Button>
+                                </Button>
                             </Grid>
 
                         </Grid>
 
-
-
-
                     </>
-
-
                 }
 
-                {!asRequest && <Typography
-                    className="price"
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                >
-                    {`RM${item.price}`}
-                </Typography>}
+                {!asRequest && <>
+                    <Chip
+                        size="small"
+                        label={item.type}
+                        color="primary"
+                    />
+                    <Typography
+                        className="price"
+                        gutterBottom
+                        // variant="h5"
+                        component="h2"
+                    >
+                        {`RM${item.price}`}
+                    </Typography></>}
 
             </CardContent>
 
-            {!asRequest && <Button
+            {!asRequest && <><Button
                 size="large"
                 className="button"
-                color = "primary"
+                color="primary"
                 onClick={() => { console.log('button click') }}
             >
                 <AddCircleOutlineIcon /> Add to request
-              </Button>}
+              </Button>
+            </>}
         </Card >
     );
 };

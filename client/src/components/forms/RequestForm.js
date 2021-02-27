@@ -1,16 +1,66 @@
 import React, { useState, useEffect } from 'react'
-import { Divider, Grid, Typography, } from '@material-ui/core';
+import { Divider, Grid, Paper, Typography, Container, AppBar } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import Controls from '../Controls/Controls';
+import Toolbar from '@material-ui/core/Toolbar';
 import { useForm, Form } from '../hooks/useForm';
+import TextField from '@material-ui/core/TextField';
+import Catalog from '../Catalog';
+import ItemData from '../../dummyData/itemData.json';
+import SearchIcon from '@material-ui/icons/Search';
+import ItemList from '../../api/items';
+import ItemCatalog from '../ItemCatalog.js/ItemCatalog';
+import Spinner from '../Spinner/Spinner';
 
+
+const styles = (theme) => ({
+    paper: {
+        maxWidth: 936,
+        margin: 'auto',
+        overflow: 'hidden',
+    },
+    searchBar: {
+        borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+        marginBottom: 20
+    },
+    searchInput: {
+        fontSize: theme.typography.fontSize,
+    },
+    block: {
+        display: 'block',
+    },
+    contentWrapper: {
+        margin: '40px 16px',
+    },
+    container: {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(5),
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    item: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: theme.spacing(0, 5),
+    },
+    title: {
+        marginBottom: theme.spacing(5),
+    }
+});
 
 const initialFValues = {
     title: '',
     description: '',
 }
 
-const RequestForm = () => {
-    // const { addOrEdit, recordForEdit } = props
+const RequestForm = (props) => {
+    const { classes } = props;
+    const [itemList] = ItemList(null);
+
+    const [selectedItems, setSelectedItems] = useState([]);
 
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
@@ -39,12 +89,12 @@ const RequestForm = () => {
         resetForm
     } = useForm(initialFValues, true, validate);
 
-    // const handleSubmit = e => {
-    //     e.preventDefault()
-    //     if (validate()) {
-    //         addOrEdit(values, resetForm);
-    //     }
-    // }
+    const handleSubmit = e => {
+        e.preventDefault()
+        if (validate()) {
+            console.log(`${JSON.stringify(values)}`)
+        }
+    }
 
     // useEffect(() => {
     //     if (recordForEdit != null)
@@ -54,48 +104,100 @@ const RequestForm = () => {
     // }, [recordForEdit])
 
     return (
-        // <Form onSubmit={handleSubmit}>
-        <Form>
-            <Grid container spacing= {2}>
+        <Form onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <Controls.Input
-                        name="title"
-                        label="Request Title"
-                        value={values.title}
-                        onChange={handleInputChange}
-                        error={errors.title}
-                    />
-                    <Controls.Input
-                        label="Description"
-                        name="description"
-                        multiline
-                        rows={4}
-                        value={values.description}
-                        onChange={handleInputChange}
-                        error={errors.description}
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <Divider/>
-                    <Typography
+                    <Container className={classes.container}>
+
+                        <Typography
                             gutterBottom
                             variant="h5"
                             component="h2"
-                        >Requests</Typography>
+                        >CREATE NEW REQUEST</Typography>
 
-                    <div>
-                        <Controls.Button
-                            type="submit"
-                            text="Submit" />
-                        <Controls.Button
-                            text="Reset"
-                            color="default"
-                            onClick={resetForm} />
-                    </div>
+                        <Controls.Input
+                            name="title"
+                            label="Request Title"
+                            value={values.title}
+                            onChange={handleInputChange}
+                            error={errors.title}
+                        />
+                        <Controls.Input
+                            label="Description"
+                            name="description"
+                            multiline
+                            rows={4}
+                            value={values.description}
+                            onChange={handleInputChange}
+                            error={errors.description}
+                        />
+                    </Container>
+
                 </Grid>
+                <Grid item xs={12}>
+                    <Divider />
+                    <Container className={classes.container}>
+
+                        <Typography variant="h5" marked="center" className={classes.title} component="h2">
+                            REQUEST ITEMS
+                            </Typography>
+
+                        {selectedItems.length == 0 ?
+                            (<div className={classes.contentWrapper}>
+                                <Typography color="textSecondary" align="center">
+                                    No items yet. Please select items from the item catalog.
+                            </Typography>
+                            </div>) : (<Paper><Typography>{selectedItems.length}</Typography> <Controls.Button
+                                type="submit"
+                                text="Submit" />
+                                <Controls.Button
+                                    text="Reset"
+                                    color="default"
+                                    onClick={resetForm} /></Paper>)}
+
+                    </Container>
+
+                </Grid>
+                <Grid item xs={12}>
+                    <Divider />
+                    <Container className={classes.container}>
+
+                        <Typography
+                            gutterBottom
+                            variant="h5"
+                            component="h2"
+                        >ITEM CATALOG</Typography>
+
+                        <Paper className={classes.paper}>
+                            <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
+                                <Toolbar>
+                                    <Grid container spacing={2} alignItems="center">
+                                        <Grid item>
+                                            <SearchIcon className={classes.block} color="inherit" />
+                                        </Grid>
+                                        <Grid item xs>
+                                            <TextField
+                                                fullWidth
+                                                placeholder="Search by item name / type"
+                                                InputProps={{
+                                                    disableUnderline: true,
+                                                    className: classes.searchInput,
+                                                }}
+                                            />
+                                        </Grid>
+                                    </Grid>
+                                </Toolbar>
+                            </AppBar>
+                            <Container maxWidth="md">
+                            {itemList ? <ItemCatalog data = {itemList}/> : <Spinner/>}
+                                </Container>
+                        </Paper>
+                    </Container>
+                </Grid>
+
             </Grid>
         </Form>
     )
 }
 
-export default RequestForm;
+export default withStyles(styles)(RequestForm);

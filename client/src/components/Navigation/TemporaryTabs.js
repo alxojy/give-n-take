@@ -11,16 +11,22 @@ import SignUpForm from "../Forms/SignUpForm";
 
 // Data
 import UserData from '../../hooks/UserAPI.js';
+import ItemList from '../../api/items';
+import { getAllItems } from "../../api/items";
+import Spinner from "../Spinner/Spinner";
+import ItemCatalog from "../ItemCatalog.js/ItemCatalog";
 
 const TemporaryTabs = props => {
 
 const [selectedTab, setSelectedTab] = useState(0);
 const [userData] = UserData(null);
+const [itemList] = ItemList(null);
 
 const handleChange = (event, newValue) => {
 // history.push(`/home/${tabNameToIndex[newValue]}`);
 setSelectedTab(newValue);
 };
+
 
 return (
 <>
@@ -35,12 +41,13 @@ return (
 </Tabs>
 </AppBar>
 
-{selectedTab === 0 && <Catalog type = {"item"} data = {ItemData.items}/>}
-{selectedTab === 1 && <Catalog type = {"request"} data = {RequestData.requests}/>}
+{selectedTab === 0 && (itemList ? <ItemCatalog data = {itemList}/> : <Spinner/>) }
+{selectedTab === 1 && <Catalog type = "request" data = {RequestData.requests}/>}
 {selectedTab === 2 && <RequestDetail request = {RequestData.request}/>}
 {selectedTab === 3 && <RequestForm/>}
 {selectedTab === 4 && <UserIndex userData={userData[0]}/>}
 {selectedTab === 5 && <SignUpForm/>}
+{selectedTab === 6 && <SignUpForm/>}
 </>
 );
 };
