@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const userSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     name: String,
     dob: Date,
     addr: String,
@@ -16,7 +15,10 @@ const userSchema = mongoose.Schema({
         type: String,
         default: 0
     },
-    type: ['business', 'organisation', 'individual'],
+    type: {
+        type: String,
+        enum: ['business', 'organisation', 'individual']
+    }
 })
 
 var user = mongoose.model('User', userSchema);
