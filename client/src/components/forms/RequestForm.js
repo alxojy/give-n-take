@@ -120,15 +120,6 @@ const RequestForm = (props) => {
         }
 
     }
-
-    // const filter = () => {
-    //     if (target.value == "")
-    //         return itemList;
-    //     else
-
-    //         return itemList.filter(x => x.name.toLowerCase().includes(target.value) || x.name.toLowerCase().includes(target.value))
-    // }
-
     return (
         <Form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
@@ -174,7 +165,7 @@ const RequestForm = (props) => {
                                     No items yet. Please select items from the item catalog.
                             </Typography>
                             </div>) : (<>
-                                <ItemCatalog data={selectedItems} />
+                                <Catalog type = "new-item-request" data={selectedItems} />
                                 <Controls.Button
                                 type="submit"
                                 text="Submit" />

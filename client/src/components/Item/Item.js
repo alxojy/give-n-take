@@ -12,7 +12,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import "./item.css";
 import imgPath from '../../img/cutiecompact.jpg'
 
-const Item = ({ item, asRequest,addHandler }) => {
+const Item = ({ item, asRequest, newRequest, addHandler }) => {
 
     // console.log(`${JSON.stringify(item)}, ${item.item.name}`)
     return (
@@ -21,7 +21,7 @@ const Item = ({ item, asRequest,addHandler }) => {
                 component="img"
                 height="200"
                 className="card-image"
-                // image={imgPath}
+                image={imgPath}
             />
             <CardContent className="content">
                 <Typography
@@ -99,7 +99,64 @@ const Item = ({ item, asRequest,addHandler }) => {
                     </>
                 }
 
-                {!asRequest && <>
+                {newRequest &&
+                    <>
+                        <Grid container item xs={12} spacing={1}>
+                            <Grid item xs={12}>
+                                <Typography
+                                    className="price"
+                                    gutterBottom
+                                // component="h2"
+                                >
+                                    {`RM${item.price}`}
+                                </Typography>
+                            </Grid>
+
+                            <Grid container item xs={12} className="center">
+                                <Grid item xs={3}>
+                                    <Button
+                                        size="small"
+                                        variant="outlined"
+                                        className="increase-product-quantity"
+                                        onClick={() => console.log('increase')}
+                                    >
+                                        +
+                                </Button>
+                                </Grid>
+                                <Grid item xs={2} >
+                                    <Typography className="center">&nbsp;{2}&nbsp;</Typography>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Button
+                                        size="small"
+                                        color="secondary"
+                                        variant="outlined"
+                                        onClick={() => console.log('decrease')}
+                                    >
+                                        -
+                                </Button>
+                                </Grid>
+                            </Grid>
+
+
+                            <Grid item xs={12} className="center">
+                                <Button
+                                    size="large"
+                                    className="button"
+                                    onClick={() => {
+                                        console.log('button click')
+                                    }}
+                                >
+                                    <ShoppingBasketIcon /> Add to basket
+                                </Button>
+                            </Grid>
+
+                        </Grid>
+
+                    </>
+                }
+
+                {(!asRequest && !newRequest) && <>
                     <Chip
                         size="small"
                         label={item.type}
@@ -116,12 +173,14 @@ const Item = ({ item, asRequest,addHandler }) => {
 
             </CardContent>
 
-            {!asRequest && <><Button
+            {(!asRequest && !newRequest) && <><Button
                 size="large"
                 className="button"
                 color="primary"
-                onClick={() => { console.log('button click') 
-            addHandler() }}
+                onClick={() => {
+                    console.log('button click')
+                    addHandler()
+                }}
             >
                 <AddCircleOutlineIcon /> Add to request
               </Button>
