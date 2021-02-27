@@ -6,13 +6,14 @@ import {
     Button,
     Grid,
     Chip,
+    Divider,
 } from "@material-ui/core";
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import "./item.css";
 import imgPath from '../../img/cutiecompact.jpg'
 
-const Item = ({ item, asRequest, newRequest, addHandler }) => {
+const Item = ({ item, asRequest, newRequest, addHandler, onChange }) => {
 
     // console.log(`${JSON.stringify(item)}, ${item.item.name}`)
     return (
@@ -26,8 +27,9 @@ const Item = ({ item, asRequest, newRequest, addHandler }) => {
             <CardContent className="content">
                 <Typography
                     className="title"
+                    color="primary"
                     gutterBottom
-                    // variant="h5"
+                    variant="h6"
                     component="h2"
                 >
                     {item.name}
@@ -35,6 +37,7 @@ const Item = ({ item, asRequest, newRequest, addHandler }) => {
 
                 {asRequest &&
                     <>
+                        <Divider />
                         <Grid container item xs={12} spacing={1}>
                             <Grid item xs={10}>
                                 <Typography
@@ -86,6 +89,7 @@ const Item = ({ item, asRequest, newRequest, addHandler }) => {
                                 <Button
                                     size="large"
                                     className="button"
+                                    color="primary"
                                     onClick={() => {
                                         console.log('button click')
                                     }}
@@ -101,6 +105,7 @@ const Item = ({ item, asRequest, newRequest, addHandler }) => {
 
                 {newRequest &&
                     <>
+                        <Divider />
                         <Grid container item xs={12} spacing={1}>
                             <Grid item xs={12}>
                                 <Typography
@@ -116,22 +121,23 @@ const Item = ({ item, asRequest, newRequest, addHandler }) => {
                                 <Grid item xs={3}>
                                     <Button
                                         size="small"
+                                        color="primary"
                                         variant="outlined"
                                         className="increase-product-quantity"
-                                        onClick={() => console.log('increase')}
+                                        onClick={() => onChange.fn.increment(onChange.index)}
                                     >
                                         +
                                 </Button>
                                 </Grid>
                                 <Grid item xs={2} >
-                                    <Typography className="center">&nbsp;{2}&nbsp;</Typography>
+                                    <Typography className="center">{onChange.fn.selectedQuantity[onChange.index]}</Typography>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <Button
                                         size="small"
-                                        color="secondary"
+                                        color="primary"
                                         variant="outlined"
-                                        onClick={() => console.log('decrease')}
+                                        onClick={() => onChange.fn.decrement(onChange.index)}
                                     >
                                         -
                                 </Button>
@@ -143,6 +149,7 @@ const Item = ({ item, asRequest, newRequest, addHandler }) => {
                                 <Button
                                     size="large"
                                     className="button"
+                                    color="primary"
                                     onClick={() => {
                                         console.log('button click')
                                     }}

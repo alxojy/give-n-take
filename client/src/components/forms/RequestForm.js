@@ -67,6 +67,7 @@ const RequestForm = (props) => {
     }, [itemList])
 
     const [selectedItems, setSelectedItems] = useState([]);
+    const [selectedQuantity, setSelectedQuantity] = useState([0])
 
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
@@ -111,14 +112,45 @@ const RequestForm = (props) => {
             setFilteredItem(itemList.filter(x => x.name.toLowerCase().includes(target.value.toLowerCase()) || x.type.toLowerCase().includes(target.value.toLowerCase())))
     }
 
+    // add to request handler
     const addItems = (item) => {
-        console.log(`add items : ${item}`)
+        // check if item already selected
         const searchResult = selectedItems.find(({ name }) => name === item.name)
         if (!searchResult) {
+            // console.log(`selectedQuantity : ${selectedQuantity},${selectedQuantity instanceof Array}`)
+
+            // if not add to list of selected items 
+            const newSelectedQuantity = [...selectedQuantity]
+            newSelectedQuantity.push(0)
+            // console.log(`newSelecteydQuantity : ${newSelectedQuantity}`)
+            // console.log(`selectedQuantit : ${selectedQuantity},${selectedQuantity instanceof Array}`)
+
             const newSelected = selectedItems.concat(item);
+            setSelectedQuantity(newSelectedQuantity);
             setSelectedItems(newSelected);
         }
+    }
 
+    const increment = (index) => {
+        // console.log(`increment : ${index}`)
+        // console.log(`selectedQuantity : ${selectedQuantity},${selectedQuantity instanceof Array}`)
+        selectedQuantity[index] += 1;
+        const newSelectedQuantity = [...selectedQuantity];
+        setSelectedQuantity(newSelectedQuantity);
+    }
+
+    const decrement = (index) => {
+        console.log(`decrement : ${index}`)
+        const newSelectedQuantity = [...selectedQuantity];
+
+        if (newSelectedQuantity[index] > 0) {
+            newSelectedQuantity[index] -= 1 };
+        setSelectedQuantity(newSelectedQuantity);
+    }
+
+    const reset = () => {
+        setSelectedQuantity([]);
+        setSelectedItems([]);
     }
     return (
         <Form onSubmit={handleSubmit}>
@@ -164,15 +196,15 @@ const RequestForm = (props) => {
                                 <Typography color="textSecondary" align="center">
                                     No items yet. Please select items from the item catalog.
                             </Typography>
-                            </div>) : (<>
-                                <Catalog type = "new-item-request" data={selectedItems} />
+                            </div>) : (<Container maxWidth = {200}>
+                                <Catalog type = "new-item-request" data={selectedItems} changeQuantityHandler = {{increment,decrement,selectedQuantity}} />
                                 <Controls.Button
                                 type="submit"
                                 text="Submit" />
                                 <Controls.Button
                                     text="Reset"
                                     color="default"
-                                    onClick={resetForm} /></>)}
+                                    onClick={reset} /></Container>)}
 
                     </Container>
 
@@ -187,7 +219,7 @@ const RequestForm = (props) => {
                             component="h2"
                         >ITEM CATALOG</Typography>
 
-                        <Paper className={classes.paper}>
+                        <Paper className={classes.paper} elevation={3}>
                             <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
                                 <Toolbar>
                                     <Grid container spacing={2} alignItems="center">
