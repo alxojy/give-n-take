@@ -69,7 +69,7 @@ import {
                 //   addProduct(product.id, 1);
                 }}
               >
-                <ShoppingCart /> Add to basket
+                <ShoppingCart /> View Details
               </Button>
             </>
           )}
