@@ -10,6 +10,7 @@ import {
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import "./item.css";
+import imgPath from '../../img/cutiecompact.jpg'
 
 const Item = ({ item, asRequest }) => {
     // console.log(`${JSON.stringify(item)}, ${item.item.name}`)
@@ -19,7 +20,7 @@ const Item = ({ item, asRequest }) => {
                 component="img"
                 height="200"
                 className="card-image"
-            // image={product.media.source}
+                image={imgPath}
             />
             <CardContent className="content">
                 <Typography
@@ -30,8 +31,6 @@ const Item = ({ item, asRequest }) => {
                 >
                     {item.name}
                 </Typography>
-
-
 
                 {asRequest &&
                     <>

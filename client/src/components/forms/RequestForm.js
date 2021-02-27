@@ -60,6 +60,12 @@ const RequestForm = (props) => {
     const { classes } = props;
     const [itemList] = ItemList(null);
 
+    const [filteredItem, setFilteredItem] = useState(itemList)
+    
+    useEffect(() => {
+        setFilteredItem(itemList)
+    }, [itemList])
+
     const [selectedItems, setSelectedItems] = useState([]);
 
     const validate = (fieldValues = values) => {
@@ -96,12 +102,23 @@ const RequestForm = (props) => {
         }
     }
 
-    // useEffect(() => {
-    //     if (recordForEdit != null)
-    //         setValues({
-    //             ...recordForEdit
-    //         })
-    // }, [recordForEdit])
+    const handleSearch = e => {
+        let target = e.target;
+        console.log(`target ${target.value}`);
+        if (!target.value)
+            setFilteredItem(itemList);
+        else
+            setFilteredItem(itemList.filter(x => x.name.toLowerCase().includes(target.value.toLowerCase()) || x.type.toLowerCase().includes(target.value.toLowerCase())))
+    }
+
+
+    // const filter = () => {
+    //     if (target.value == "")
+    //         return itemList;
+    //     else
+
+    //         return itemList.filter(x => x.name.toLowerCase().includes(target.value) || x.name.toLowerCase().includes(target.value))
+    // }
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -183,14 +200,15 @@ const RequestForm = (props) => {
                                                     disableUnderline: true,
                                                     className: classes.searchInput,
                                                 }}
+                                                onChange = {(event)=>handleSearch(event)}
                                             />
                                         </Grid>
                                     </Grid>
                                 </Toolbar>
                             </AppBar>
                             <Container maxWidth="md">
-                            {itemList ? <ItemCatalog data = {itemList}/> : <Spinner/>}
-                                </Container>
+                                {filteredItem ? <ItemCatalog data={filteredItem} /> : <Spinner />}
+                            </Container>
                         </Paper>
                     </Container>
                 </Grid>
