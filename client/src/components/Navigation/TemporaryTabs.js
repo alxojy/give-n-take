@@ -4,9 +4,9 @@ import RequestData from '../../dummyData/requestData.json';
 import ItemData from '../../dummyData/itemData.json';
 import Catalog from "../../components/Catalog";
 import RequestDetail from "../Request/RequestDetail";
-import RequestForm from "../Forms/RequestForm";
+import RequestForm from "../forms/RequestForm";
 import UserIndex from '../User/UserIndex.js';
-import SignUpForm from "../Forms/SignUpForm";
+import SignUpForm from "../forms/SignUpForm";
 
 
 // Data
@@ -15,7 +15,7 @@ import UserData from '../../hooks/UserAPI.js';
 const TemporaryTabs = props => {
 
 const [selectedTab, setSelectedTab] = useState(0);
-const [userData] = UserData(null);
+const [userData, donationDetails, requestDetails] = UserData(null);
 
 const handleChange = (event, newValue) => {
 // history.push(`/home/${tabNameToIndex[newValue]}`);
@@ -39,7 +39,7 @@ return (
 {selectedTab === 1 && <Catalog type = {"request"} data = {RequestData.requests}/>}
 {selectedTab === 2 && <RequestDetail request = {RequestData.request}/>}
 {selectedTab === 3 && <RequestForm/>}
-{selectedTab === 4 && <UserIndex userData={userData[0]}/>}
+{selectedTab === 4 && <UserIndex userData={userData} donationData={donationDetails} requestData={requestDetails}/>}
 {selectedTab === 5 && <SignUpForm/>}
 </>
 );
