@@ -13,11 +13,7 @@ const donationSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    image: {
-        data: Buffer,
-        contentType: String,
-        default: 0
-    },
+    image: String,
 })
 
 var donation = mongoose.model('donation', donationSchema);

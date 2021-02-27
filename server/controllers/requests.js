@@ -22,7 +22,8 @@ export const createRequest = async (req, res) => {
                 var newItemRequest = new ItemRequest({
                     request: doc.id,
                     item: id,
-                    quantity: quantity
+                    quantity: quantity,
+                    initQuantity: quantity
                 })
                 await newItemRequest.save();
             });

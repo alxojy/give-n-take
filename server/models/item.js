@@ -3,7 +3,14 @@ import mongoose from 'mongoose';
 const itemSchema = mongoose.Schema({
     type: {
         type: String,
-        enum: ['Bread', 'Meat', 'Canned food', 'Others'],
+        enum: [
+            "Personal hygiene",
+            "Pets",
+            "Grocery",
+            "Household",
+            "School Supplies",
+            "Others"
+        ],
         default: 'Others'
     },
     name: String,
