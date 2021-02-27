@@ -6,8 +6,8 @@ import {
     Button,
     Grid,
     Divider,
+    Container,
 } from "@material-ui/core";
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import Item from "../Item/Item";
 
 const RequestDetail = ({ request }) => {
@@ -18,7 +18,7 @@ const RequestDetail = ({ request }) => {
                     <Grid item xs={12} md={6}>
                         <CardMedia
                             component="img"
-                            height="260"
+                            height="400"
                             className="card-image"
                         // image={product.media.source}
                         />
@@ -47,8 +47,8 @@ const RequestDetail = ({ request }) => {
 
                 <Grid containter item xs={12} >
                 <Divider variant="middle" />
-
-                    <CardContent className="content">
+                    <Container maxWidth="md">
+                    <CardContent className="content" >
                         <Typography
                             className="title"
                             gutterBottom
@@ -60,14 +60,13 @@ const RequestDetail = ({ request }) => {
                         <Grid container spacing={4}>
 
                             {request.request_items.map(item => (
-                                <Grid key={item.id} item xs={6} sm={4} md={3} lg = {2}>
+                                <Grid key={item.id} item xs={6} sm={4} >
                                     <Item item={item} asRequest = {true}/>
                                 </Grid>
                             ))}
                         </Grid>
-
                     </CardContent>
-
+                    </Container>
                 </Grid>
             </Grid>
         </Card >
