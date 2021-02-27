@@ -8,14 +8,8 @@ const userSchema = mongoose.Schema({
     occupation: String,
     email: String,
     isDonor: Boolean,
-    bio: {
-        type: String,
-        default: 0
-    },
-    image: {
-        type: String,
-        default: 0
-    },
+    bio: String,
+    image: String,
     type: ['business', 'organisation', 'individual'],
 })
 

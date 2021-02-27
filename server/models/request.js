@@ -9,12 +9,9 @@ const requestSchema = mongoose.Schema({
     desc: String,
     requestDate: {
         type: Date,
-        default: new Date()
+        default: Date.now
     },
-    fulfilledDate: {
-        type: Date,
-        default: 0
-    },
+    fulfilledDate: Date,
 })
 
 var request = mongoose.model('Request', requestSchema);
