@@ -15,7 +15,10 @@ const userSchema = mongoose.Schema({
         type: String,
         default: 0
     },
-    type: ['business', 'organisation', 'individual'],
+    type: {
+        type: String,
+        enum: ['business', 'organisation', 'individual']
+    }
 })
 
 var user = mongoose.model('User', userSchema);
