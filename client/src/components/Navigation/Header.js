@@ -10,17 +10,16 @@ const style = () => ({
 } 
 );
 
-const Header = props => {
+const NavBar = props => {
     const { classes } = props;
 
     return (
+        
         // <AppBar position="static" className={classes.root}>
         <AppBar position="fixed" className={classes.navbar}>
         <Toolbar>
                 <Grid container alignItems="center">
                 <Grid item sm></Grid>
-
-
                 <Grid item>
                 <div className="basket-wrapper">
                 <IconButton
@@ -41,4 +40,4 @@ const Header = props => {
     )
 }
 
-export default withStyles(style)(Header);
+export default withStyles(style)(NavBar);
