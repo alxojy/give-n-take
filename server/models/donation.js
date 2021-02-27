@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const donationSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     donor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
