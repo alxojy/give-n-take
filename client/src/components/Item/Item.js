@@ -7,11 +7,12 @@ import {
     Button,
 } from "@material-ui/core";
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'; 
-import "./request.css";
+import "./item.css";
 
-const Request = (request) => {
+const Item = ({item}) => {
+    // console.log(`${JSON.stringify(item)}, ${item.item.name}`)
     return (
-        <Card className="request-card">
+        <Card className="item-card">
             <CardActionArea>
                 <CardMedia
                     component="img"
@@ -26,19 +27,19 @@ const Request = (request) => {
                         variant="h5"
                         component="h2"
                     >
-              {request.request.request_title}
+                        {item.name}
                     </Typography>
                 </CardContent>
             </CardActionArea>
             <div className="content">
-                {/* <Typography
+                <Typography
                     className="price"
                     gutterBottom
                     variant="h5"
                     component="h2"
                 >
-                    {`RM${request.request.price}`}
-                </Typography> */}
+                    {`RM${item.price}`}
+                </Typography>
                 <Button
                     size="large"
                     className="button"
@@ -53,4 +54,4 @@ const Request = (request) => {
     );
   };
 
-export default Request;
+export default Item;

@@ -1,0 +1,58 @@
+.MuiCard-root.item-card {
+    /* background-color: #21262d;
+    color: #c9d1d9; */
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .MuiCard-root.item-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 5px 5px #3f4347;
+  }
+  
+  .item-card .content {
+    padding-bottom: 0;
+  }
+  
+  .item-card .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .item-card.card-image {
+    padding: 10px 10px 0 10px;
+  }
+  
+  .item-card p {
+    color: #c9d1d9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .item-card .price {
+    margin-top: 10px;
+    color: #21262d;
+  }
+  
+  .actions-content {
+    display: flex;
+  }
+  
+  .actions-content h2 {
+    flex-grow: 1;
+  }
+  
+  .item-card.button {
+    color: #000000;
+  }
+  
+  .item-card .button:hover {
+    background-color: #e9e9e9;
+    color: #000000;
+  }
+  
+  .item-card .button svg {
+    margin-right: 10px;
+  }
+  
