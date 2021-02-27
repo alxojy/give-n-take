@@ -7,10 +7,24 @@ import {
     CardActionArea,
     Button,
     Paper,
+    Grid,
 } from "@material-ui/core";
 import UserDonatedCard from './UserDonatedCard.js';
 
-const UserDonationDetails = ({userData}) => {
+const UserDonationDetails = ({donationData}) => {
+    let renderedList = null;
+    console.log(donationData)
+    if (donationData) {
+        renderedList = donationData.map((data) => {
+            return (
+                <Grid key={data._id} item sm={4} md={3}>
+                    <UserDonatedCard data={data}/>
+
+                </Grid>
+            )
+        })
+    }
+
     return (
         <Card className="userdetails-card">
                 <CardContent className="content">
@@ -22,8 +36,9 @@ const UserDonationDetails = ({userData}) => {
                     >
                         Donation History
                     </Typography>
-
-                    <UserDonatedCard />
+                    <Grid container spacing={4}>
+                        {renderedList}
+                    </Grid>
                 </CardContent>
         </Card>
     )

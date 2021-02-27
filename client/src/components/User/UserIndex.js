@@ -5,7 +5,7 @@ import UserRequestDetails from './UserRequestDetails.js';
 
 import { Grid } from "@material-ui/core";
 
-const UserIndex = ({userData}) => {
+const UserIndex = ({userData, donationData}) => {
     return (
         <div style={{ padding: 20 }}>
             <Grid container spacing={3}>
@@ -18,7 +18,7 @@ const UserIndex = ({userData}) => {
                 <Grid item xs={8}>
                     <Grid item xs spacing={3}>
 
-                    <UserDonationDetails userData={userData}/>
+                    <UserDonationDetails donationData={donationData}/>
                     </Grid>
                     <Grid item xs>
                         <div style={{paddingTop: '10px'}}>
