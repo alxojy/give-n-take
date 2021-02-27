@@ -61,7 +61,6 @@ const Item = ({ item, asRequest }) => {
                     component="h2"
                 >
                     {`RM${item.price}`}
-<<<<<<< HEAD
                 </Typography>}
 
             </CardContent>
@@ -76,21 +75,5 @@ const Item = ({ item, asRequest }) => {
         </Card >
     );
 };
-=======
-                </Typography>
-                <Button
-                    size="large"
-                    className="button"
-                    onClick={() => {
-                        console.log('button click')
-                    }}
-                >
-                    <ShoppingBasketIcon /> Add to basket
-              </Button>
-            </div >
-      </Card >
-    );
-  };
->>>>>>> b23d0cd57bb07e78ae4a34f1c17b1c201370c2b6
 
 export default Item;
