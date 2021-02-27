@@ -4,7 +4,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Requests from './components/Requests';
+import Requests from './components/Requests/Requests';
 import RequestsData from './dummyData/requestData.json';
 
 function App() {

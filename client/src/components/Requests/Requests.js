@@ -1,8 +1,8 @@
 import { Grid, Container } from "@material-ui/core";
-import Request from "./Request";
-import Spinner from "./Spinner";
+import Request from "../Request/Request";
+import Spinner from "../Spinner/Spinner";
 // import Banner from "../Banner";
-// import "./style.css";
+import "./style.css";
 
 const Requests = ({ requests, addProduct }) => {
   if (!requests || !requests.length) return <Spinner />;

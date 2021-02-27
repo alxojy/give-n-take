@@ -1,5 +1,5 @@
 import { CircularProgress } from "@material-ui/core";
-// import "./style.css";
+import "./style.css";
 
 const Spinner = () => (
   <div className="spinner">

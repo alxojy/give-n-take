@@ -1,4 +1,4 @@
-import CustomCard from "./CustomCard";
+import CustomCard from "../CustomCard/CustomCard";
 
 const Request = ({ basket, request, addProduct, RemoveItemFromBasket }) => (
   <CustomCard

@@ -8,7 +8,7 @@ import {
     Button,
   } from "@material-ui/core";
   import { ShoppingCart } from "@material-ui/icons";
-//   import "./style.css";
+  import "./style.css";
   
   const CustomCard = ({
     basket,
