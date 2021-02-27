@@ -11,10 +11,7 @@ const requestSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    fulfilledDate: {
-        type: Date,
-        default: 0
-    },
+    fulfilledDate: Date,
 })
 
 
