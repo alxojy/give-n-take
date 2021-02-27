@@ -16,7 +16,7 @@ import UserData from '../../hooks/UserAPI.js';
 
 const TemporaryTabs = props => {
 
-const [selectedTab, setSelectedTab] = useState(7);
+const [selectedTab, setSelectedTab] = useState(2);
 const [userData, donationDetails, requestDetails] = UserData(null);
 
 const handleChange = (event, newValue) => {
@@ -30,7 +30,6 @@ return (
 <Tabs value={selectedTab} onChange={handleChange}>
 <Tab label="Home" />
 <Tab label="Item Catalog" />
-<Tab label="Requests List" />
 <Tab label="Request Details" />
 <Tab label="New Request Form" />
 <Tab label="User" />
@@ -41,12 +40,11 @@ return (
 
 {selectedTab === 0 && <HomePage />}
 {selectedTab === 1 && <Catalog type = {"item"} data = {ItemData.items}/>}
-{selectedTab === 2 && <Catalog type = {"request"} data = {RequestData.requests}/>}
-{selectedTab === 3 && <RequestDetail request = {RequestData.request}/>}
-{selectedTab === 4 && <RequestForm/>}
-{selectedTab === 5 && <UserIndex userData={userData} donationData={donationDetails} requestData={requestDetails}/>}
-{selectedTab === 6 && <SignUpForm/>}
-{selectedTab === 7 && <DonationPage/>}
+{selectedTab === 2 && <RequestDetail request = {RequestData.request}/>}
+{selectedTab === 3 && <RequestForm/>}
+{selectedTab === 4 && <UserIndex userData={userData} donationData={donationDetails} requestData={requestDetails}/>}
+{selectedTab === 5 && <SignUpForm/>}
+{selectedTab === 6 && <DonationPage/>}
 </>
 );
 };

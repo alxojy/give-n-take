@@ -7,14 +7,16 @@ import {
     Grid,
     Divider,
     Container,
+    withStyles
 } from "@material-ui/core";
 import Item from "../Item/Item";
+import "./requestDetail.css";
 
 const RequestDetail = ({ request }) => {
     return (
         <Card>
-            <Grid container spacing = {3}>
-                <Grid container item xs={12}>
+            <Grid container>
+                <Grid container item className="title-wrapper">
                     <Grid item xs={12} md={6}>
                         <CardMedia
                             component="img"
