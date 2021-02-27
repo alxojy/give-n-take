@@ -5,6 +5,7 @@ import cors from 'cors';
 
 import cashDonations from './routes/cashDonations.js';
 import requests from './routes/requests.js';
+import items from './routes/items.js';
 import dummy from './routes/dummy.js';
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(cors());
 
 app.use('/cash_donations', cashDonations);
 app.use('/requests', requests);
+app.use('/items', items);
 app.use('/dummy', dummy);
 
 const CONNECTION_URL = 'mongodb+srv://admin2:admin@cluster0.yh2tz.mongodb.net/db?retryWrites=true&w=majority'
