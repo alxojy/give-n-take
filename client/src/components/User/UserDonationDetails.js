@@ -13,7 +13,7 @@ import UserDonatedCard from './UserDonatedCard.js';
 
 const UserDonationDetails = ({donationData}) => {
     let renderedList = null;
-    console.log(donationData)
+
     if (donationData) {
         renderedList = donationData.map((data) => {
             return (
@@ -23,10 +23,14 @@ const UserDonationDetails = ({donationData}) => {
                 </Grid>
             )
         })
+    } else {
+        return (
+            <div>Empty</div>
+        )
     }
 
     return (
-        <Card className="userdetails-card">
+        <Card className="donatedetails-card">
                 <CardContent className="content">
                     <Typography
                         className="title"

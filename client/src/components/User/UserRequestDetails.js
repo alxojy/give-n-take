@@ -5,11 +5,29 @@ import {
     Typography,
     CardActionArea,
     Button,
-    Paper, } from "@material-ui/core";
+    Paper,
+    Grid, } from "@material-ui/core";
+import UserRequestedCard from './UserRequestedCard';
 
-const UserRequestDetails = ({userData}) => {
+const UserRequestDetails = ({requestData}) => {
+    let renderedList = null;
+
+    if (requestData) {
+        renderedList = requestData.map((data) => {
+            return (
+                <Grid key={data._id} item sm={4} md={3}>
+                    <UserRequestedCard data={data}/>
+
+                </Grid>
+            )
+        })
+    } else {
+        return (
+            <div>Empty</div>
+        )
+    }
     return (
-        <Card className="userdetails-card">
+        <Card className="requestdetails-card">
                 <CardContent className="content">
                     <Typography
                         className="title"
@@ -19,6 +37,9 @@ const UserRequestDetails = ({userData}) => {
                     >
                         Request History
                     </Typography>
+                    <Grid container spacing={4}>
+                        {renderedList}
+                    </Grid>
                 </CardContent>
         </Card>
     )
