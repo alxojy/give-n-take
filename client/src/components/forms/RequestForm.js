@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Divider, Grid, Typography, } from '@material-ui/core';
 import Controls from '../controls/Controls';
-import { useForm, Form } from '../../components/hooks/useForm';
+import { useForm, Form } from '../hooks/useForm';
 
 
 const initialFValues = {

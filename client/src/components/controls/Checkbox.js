@@ -17,7 +17,7 @@ export default function Checkbox(props) {
             <FormControlLabel
                 control={<MuiCheckbox
                     name={name}
-                    color="primary"
+                    color="#026670"
                     checked={value}
                     onChange={e => onChange(convertToDefEventPara(name, e.target.checked))}
                 />}

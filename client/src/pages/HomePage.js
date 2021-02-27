@@ -1,6 +1,6 @@
 import React from 'react'
 import {withStyles} from "@material-ui/core";
-import Header from '../components/Navigation/Header';
+import NavBar from '../components/Navigation/Header';
 import TemporaryTabs from '../components/Navigation/TemporaryTabs';
 
 const style = theme => ({
@@ -16,7 +16,7 @@ const HomePage = props => {
 
     return (
         <div className={classes.pageHeader}>
-        <Header/>
+        <NavBar/>
         <TemporaryTabs/>
         </div>
     )

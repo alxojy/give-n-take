@@ -114,6 +114,7 @@ const Item = ({ item, asRequest }) => {
             {!asRequest && <Button
                 size="large"
                 className="button"
+                color = "primary"
                 onClick={() => { console.log('button click') }}
             >
                 <AddCircleOutlineIcon /> Add to request
