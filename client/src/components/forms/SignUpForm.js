@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Grid, } from '@material-ui/core';
-import Controls from '../controls/Controls';
+import Controls from '../Controls/Controls';
 import { useForm, Form } from '../hooks/useForm';
 
 

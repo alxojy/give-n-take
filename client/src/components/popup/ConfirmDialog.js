@@ -9,7 +9,7 @@
 
 import React from 'react'
 import { Dialog, DialogTitle, DialogContent, DialogActions, Typography, withStyles, IconButton } from '@material-ui/core'
-import Controls from "../controls/Controls";
+import Controls from "../Controls/Controls";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 const style = theme => ({
     dialog: {
