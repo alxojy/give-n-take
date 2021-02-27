@@ -1,7 +1,7 @@
 import { Avatar, Button, Grid, ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText, Typography } from "@material-ui/core";
 import imgPath from '../../img/cutiecompact.jpg'
 
-const RequestItem = (item) => {
+const RequestItem = ({item}) => {
     return (<ListItem alignItems="flex-start">
         <ListItemAvatar>
             <Avatar alt="Remy Sharp" src={imgPath} />
