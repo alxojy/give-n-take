@@ -60,7 +60,7 @@ const RequestDetail = ({ request }) => {
                         <Grid container spacing={4}>
 
                             {request.request_items.map(item => (
-                                <Grid key={item.id} item xs={12} sm={6} md={4} lg = {3}>
+                                <Grid key={item.id} item xs={6} sm={4} md={3} lg = {2}>
                                     <Item item={item} asRequest = {true}/>
                                 </Grid>
                             ))}
@@ -69,26 +69,6 @@ const RequestDetail = ({ request }) => {
                     </CardContent>
 
                 </Grid>
-
-                <div className="content">
-                    {/* <Typography
-                    className="price"
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                >
-                    {`RM${request.request.price}`}
-                </Typography> */}
-                    <Button
-                        size="large"
-                        className="button"
-                        onClick={() => {
-                            console.log('button click')
-                        }}
-                    >
-                        <ShoppingBasketIcon /> Add to donation cart
-              </Button>
-                </div >
             </Grid>
         </Card >
     );
