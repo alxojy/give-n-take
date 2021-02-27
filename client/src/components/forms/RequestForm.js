@@ -140,7 +140,7 @@ const RequestForm = (props) => {
     }
 
     const decrement = (index) => {
-        console.log(`decrement : ${index}`)
+        // console.log(`decrement : ${index}`)
         const newSelectedQuantity = [...selectedQuantity];
 
         if (newSelectedQuantity[index] > 0) {
@@ -196,7 +196,7 @@ const RequestForm = (props) => {
                                 <Typography color="textSecondary" align="center">
                                     No items yet. Please select items from the item catalog.
                             </Typography>
-                            </div>) : (<Container maxWidth = {200}>
+                            </div>) : (<>
                                 <Catalog type = "new-item-request" data={selectedItems} changeQuantityHandler = {{increment,decrement,selectedQuantity}} />
                                 <Controls.Button
                                 type="submit"
@@ -204,7 +204,7 @@ const RequestForm = (props) => {
                                 <Controls.Button
                                     text="Reset"
                                     color="default"
-                                    onClick={reset} /></Container>)}
+                                    onClick={reset} /></>)}
 
                     </Container>
 

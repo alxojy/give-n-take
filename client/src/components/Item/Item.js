@@ -185,7 +185,7 @@ const Item = ({ item, asRequest, newRequest, addHandler, onChange }) => {
                 className="button"
                 color="primary"
                 onClick={() => {
-                    console.log('button click')
+                    // console.log('button click')
                     addHandler()
                 }}
             >

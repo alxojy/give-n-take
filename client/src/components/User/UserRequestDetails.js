@@ -27,7 +27,7 @@ const UserRequestDetails = ({requestData}) => {
         )
     }
     return (
-        <Card className="requestdetails-card">
+        <Card className="requestdetails-card" >
                 <CardContent className="content">
                     <Typography
                         className="title"

@@ -8,7 +8,8 @@ const style = theme => ({
 
     pageHeader:{
         padding:theme.spacing(7),
-        marginBottom:theme.spacing(2)
+        marginBottom:theme.spacing(2),
+        backgroundColor : `#eee`
     },
 });
 

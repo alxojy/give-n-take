@@ -17,8 +17,7 @@ import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 
 const useStyles = makeStyles({
     root: {
-        // width: '350px',
-        // minWidth: 275,
+        boxShadow: `0px 0px 20px 5px ##f1f8f7`
     },
     // bullet: {
     //   display: 'inline-block',
@@ -51,20 +50,21 @@ const UserDetails = ({userData}) => {
                     gutterBottom
                     variant="h5"
                     component="h2"
+                    color="primary"
                 >
                     {userData.name}
                 </Typography>
                 <Typography className={classes.title} gutterBottom>
-                    <CakeOutlinedIcon /> {userData.dob.substring(0, 10)}
+                    <CakeOutlinedIcon color="primary"/> {userData.dob.substring(0, 10)}
                 </Typography>
                 <Typography className={classes.title} gutterBottom>
-                    <MailOutlineIcon /> {userData.email}
+                    <MailOutlineIcon color="primary"/> {userData.email}
                 </Typography>
                 <Typography className={classes.title} gutterBottom>
-                    <OccupationIcon /> {userData.occupation}
+                    <OccupationIcon color="primary"/> {userData.occupation}
                 </Typography>
                 <Typography className={classes.title} gutterBottom>
-                    <HomeOutlinedIcon /> {userData.addr}
+                    <HomeOutlinedIcon color="primary"/> {userData.addr}
                 </Typography>
             </CardContent>
         </Card>

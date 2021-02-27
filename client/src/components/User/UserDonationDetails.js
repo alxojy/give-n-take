@@ -10,6 +10,7 @@ import {
     Grid,
 } from "@material-ui/core";
 import UserDonatedCard from './UserDonatedCard.js';
+import "./style.css";
 
 const UserDonationDetails = ({donationData}) => {
     let renderedList = null;
@@ -30,7 +31,7 @@ const UserDonationDetails = ({donationData}) => {
     }
 
     return (
-        <Card className="donatedetails-card">
+        <Card className="root">
                 <CardContent className="content">
                     <Typography
                         className="title"

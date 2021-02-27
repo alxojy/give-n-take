@@ -15,6 +15,10 @@ import req3 from '../assets/req3.jpg';
 import * as requestAPI from '../api/requests';
 
 const style = theme => ({
+    root : {
+        backgroundColor : `#eee`
+    },
+
     pageHeader:{
         marginBottom:theme.spacing(2)
     },
@@ -87,7 +91,7 @@ const HomePage = props => {
 
     return (
         <>
-            <Grid container>
+            <Grid container >
             <div className={classes.pageHeader} />
             <Grid item md={12} lg={12} style={{textAlign: 'center'}}>
                 <img src={banner} className={classes.banner} /> 
