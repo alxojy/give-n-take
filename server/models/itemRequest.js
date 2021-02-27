@@ -10,7 +10,8 @@ const itemRequestSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Item'
     },
-    quantity: Number
+    quantity: Number,
+    initQuantity: Number,
 })
 
 var itemRequest = mongoose.model('ItemRequest', itemRequestSchema);
