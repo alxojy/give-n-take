@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import { Tabs, Tab, AppBar } from "@material-ui/core";
 import RequestData from '../../dummyData/requestData.json';
 import ItemData from '../../dummyData/itemData.json';
-import Catalog from "../../components/Catalog";
+import Catalog from "../Catalog/Catalog";
 import HomePage from "../../pages/HomePage";
 import RequestDetail from "../Request/RequestDetail";
 import RequestForm from "../Forms/RequestForm";
@@ -13,16 +13,22 @@ import DonationPage from "../../pages/DonationPage";
 
 // Data
 import UserData from '../../hooks/UserAPI.js';
+import ItemList from '../../api/items';
+import { getAllItems } from "../../api/items";
+import Spinner from "../Spinner/Spinner";
+import ItemCatalog from "../Catalog/ItemCatalog";
 
 const TemporaryTabs = props => {
 
 const [selectedTab, setSelectedTab] = useState(2);
+const [itemList] = ItemList(null);
 const [userData, donationDetails, requestDetails] = UserData(null);
 
 const handleChange = (event, newValue) => {
 // history.push(`/home/${tabNameToIndex[newValue]}`);
 setSelectedTab(newValue);
 };
+
 
 return (
 <>

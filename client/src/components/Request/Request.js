@@ -17,7 +17,7 @@ const Request = (request) => {
                     component="img"
                     height="260"
                     className="card-image"
-                // image={product.media.source}
+                    // image={product.media.source}
                 />
                 <CardContent className="content">
                     <Typography
