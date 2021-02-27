@@ -3,7 +3,6 @@ import {withStyles} from "@material-ui/core";
 import Header from '../components/Navigation/Header';
 import TemporaryTabs from '../components/Navigation/TemporaryTabs';
 
-
 const style = theme => ({
 
     pageHeader:{
