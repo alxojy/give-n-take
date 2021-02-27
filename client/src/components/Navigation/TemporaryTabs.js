@@ -1,7 +1,10 @@
 import React,{useState} from "react";
 import { Tabs, Tab, AppBar } from "@material-ui/core";
-import Item from "./Item/Item";
 import ItemCatalog from "../pages/ItemCatalog";
+import Requests from "../pages/Requests";
+import RequestData from '../../dummyData/requestData.json';
+import ItemData from '../../dummyData/itemData.json';
+import Catalog from "../pages/Catalog";
 
 
 const TemporaryTabs = props => {
@@ -19,12 +22,13 @@ const TemporaryTabs = props => {
         <Tabs value={selectedTab} onChange={handleChange}>
           <Tab label="Item Catalog" />
           <Tab label="Request Catalog" />
+          <Tab label="Reusable Catalog" />
         </Tabs>
       </AppBar>
 
-      {selectedTab === 0 && <ItemCatalog/>}
-      {selectedTab === 1 && <ItemCatalog/>}
-
+      {selectedTab === 0 && <ItemCatalog items = {ItemData.items}/>}
+      {selectedTab === 1 && <Requests requests = {RequestData.requests}/>}
+      {selectedTab === 2 && <Catalog type = {"item"} data = {ItemData.items}/>}
     </>
   );
 };

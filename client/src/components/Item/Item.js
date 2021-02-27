@@ -9,7 +9,7 @@ import {
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'; 
 import "./item.css";
 
-const Item = (item) => {
+const Item = ({item}) => {
     // console.log(`${JSON.stringify(item)}, ${item.item.name}`)
     return (
         <Card className="item-card">
@@ -27,7 +27,7 @@ const Item = (item) => {
                         variant="h5"
                         component="h2"
                     >
-                        {item.item.name}
+                        {item.name}
                     </Typography>
                 </CardContent>
             </CardActionArea>
@@ -38,7 +38,7 @@ const Item = (item) => {
                     variant="h5"
                     component="h2"
                 >
-                    {`RM${item.item.price}`}
+                    {`RM${item.price}`}
                 </Typography>
                 <Button
                     size="large"

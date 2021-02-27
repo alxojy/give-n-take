@@ -1,16 +1,16 @@
 import { Grid, Container } from "@material-ui/core";
 import Item from "../Item/Item";
+import Request from "../Request/Request";
 
-const ItemCatalog = ({items}) => {
-    console.log(items)
+const Catalog = ({type,data}) => {
     return (
         <div>
             <Container >
                 <Grid container spacing={4}>
-                    {items.map((item) =>
+                    {data.map((cur) =>
                     (
-                        <Grid key={item.id} item xs={12} sm={6} md={4}>
-                            <Item item={item} />
+                        <Grid key={cur.id} item xs={12} sm={6} md={4}>
+                            {type === "item" ? <Item item={cur} /> :  <Request request={cur} />}
                         </Grid>
                     )
 
@@ -21,4 +21,4 @@ const ItemCatalog = ({items}) => {
     );
 };
 
-export default ItemCatalog;
+export default Catalog;
