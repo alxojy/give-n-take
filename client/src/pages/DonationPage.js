@@ -65,8 +65,8 @@ const DonationPage = props => {
                 isOpen={popUpOpen}
                 onRequestClose={() => {setPopUpOpen(false);}}
                 contentLabel="xx"
-            >    
-                    <Card style={{ border: "none", boxShadow: "none" }}>
+            >   
+                    <Card style={{ border: "none", boxShadow: "none", margin: "50px 100px", display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}> 
                         <Grid>
                             <Grid container item className="title-wrapper">
                                 <Grid item xs={10} md={4}>
@@ -98,33 +98,37 @@ const DonationPage = props => {
                                 </Grid>
                             </Grid>
 
-                            <Grid containter item xs={12} >
-                            <Card>
-                                <Container maxWidth="md">
+                            <Grid containter item xs={11} style={{ marginLeft: "22px", marginTop: "20px"}} >
+                                <Container>
+                                <Card>
                                 <CardContent className="content" >
                                     <Typography
                                         className="title"
                                         gutterBottom
                                         variant="h5"
                                         component="h2"
+                                        style={{ marginTop: "16px", marginBottom: "30px" }}
                                     >
                                         Requests
                                      </Typography>
-                                    <Grid container spacing={4}>
+                                    <Grid container spacing={2}>
 
                                         {donationData[activeRequest].itemRequests.map(item => (
-                                            <Grid key={item.name} item xs={6} sm={4} >
-                                                <Item item={item} asRequest = {true}/>
+                                            <Grid key={item.name} item xs={6} sm={4} className="request-item-wrapper">
+                                                <Item item={item} className="request-item" asRequest = {true}/>
                                             </Grid>
                                         ))}
                                     </Grid>
                                 </CardContent>
+                                </Card>
                                 </Container>
-                             </Card>
                             </Grid>
                         </Grid>
-                        {activeRequest}
-                        <Button onClick={closePopUp} text="Exit"></Button>
+
+                        <Box style={{display: "flex", flexDirection: "row", justifyContent: "space-between", width: "300px", marginTop: "40px"}}>
+                            <Button onClick={closePopUp} text="Exit" style={{width: "130px"}}></Button>
+                            <Button text="Checkout" style={{width: "130px"}}></Button>
+                        </Box>
                     </Card >
             </Modal>
 
@@ -136,7 +140,7 @@ const DonationPage = props => {
                 <Box p={5}>
                     <div>
                         <Container >
-                            <Grid container spacing={4}>
+                            <Grid container spacing={2}>
                                 {donationData.map((cur, index) =>
                                 (
                                     <Grid key={cur.id} item xs={12} sm={6} md={4}>
