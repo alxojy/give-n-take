@@ -42,16 +42,18 @@ export const createDonation = async (req, res) => {
     const newDonation = new Donation({donor, request});
 
     try {
+        // insert donation
         await newDonation.save().then(res => {
-            res.fulfillDonation = false;
             items.forEach(async item => {
 
+                // insert donation x item
                 await new DonationItem({
                     donation: res._id, 
                     item: item._id, 
                     quantity: item.quantity
                 }).save();
 
+                // update quantity
                 var doc = await ItemRequest.findOneAndUpdate({
                     request: request,
                     item: item._id
@@ -61,29 +63,29 @@ export const createDonation = async (req, res) => {
                     }
                 }, {
                     new: true
+                }).then( async doc => {
+                    // check if all zeros
+                    if (await (doc.quantity === 0)) {
+                        await ItemRequest.find(
+                            { request }
+                        ).then(async doc => {
+                            var allFulfilled = doc.map(ir => {
+                                return ir.toObject().quantity;
+                            }).every(async q => {
+                                q.toString() === "0"
+                            })
+                            // update fulfilledDate
+                            if (allFulfilled) {
+                                await Request.findOneAndUpdate({
+                                    _id: request
+                                }, {
+                                    fulfilledDate: Date.now()
+                                });    
+                            }
+                        })
+                    }
                 });
-                return doc;
-            }).then( async doc => {
-                if (await (doc.quantity === 0)) {
-                    var allFulfilled = await ItemRequest.find(
-                        { request }
-                    ).map( doc => 
-                        doc.quantity 
-                    ).every( 
-                        q => q === 0 
-                    );
-
-                    if (allFulfilled) {
-                        Request.findOneAndUpdate({
-                            _id: request
-                        }, {
-                            fulfilledDate: Date.now()
-                        });
-                        res.fulfillDonation = true;
-                    };
-                }
             });
-            return res
         });
         res.status(201).json(newDonation);
     } 

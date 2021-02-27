@@ -1,14 +1,18 @@
 import mongoose from 'mongoose';
 
 const itemSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    type: [
-        "Personal hygiene",
-        "Pets",
-        "Grocery",
-        "Household",
-        "School Supplies"
-    ],
+    type: {
+        type: String,
+        enum: [
+            "Personal hygiene",
+            "Pets",
+            "Grocery",
+            "Household",
+            "School Supplies",
+            "Others"
+        ],
+        default: 'Others'
+    },
     name: String,
     price: Number,
     image: String
