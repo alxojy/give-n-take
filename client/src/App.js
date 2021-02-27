@@ -4,13 +4,13 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import HomePage from "./components/pages/HomePage";
 
 function App() {
   return (
     <Router>
       <div>
-        <div>Hello world</div>
-
+        <HomePage/>
         {/* 
         <Switch>
           <Route path="/">
