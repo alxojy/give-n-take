@@ -4,9 +4,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import HomePage from "./components/pages/HomePage";
-// import Requests from './components/Requests/Requests';
-// import RequestsData from './dummyData/requestData.json';
+import HomePage from "./pages/HomePage";
+
 
 function App() {
   // console.log(RequestsData.requests)
@@ -14,8 +13,7 @@ function App() {
     <Router>
       <div>
         <HomePage/>
-        {/* <div>Hello world</div> */}
-        {/* <Requests requests={RequestsData.requests}/> */}
+      
         {/* 
         <Switch>
           <Route path="/">

@@ -1,6 +1,6 @@
 import { Grid, Container } from "@material-ui/core";
-import Item from "../Item/Item";
-import Request from "../Request/Request";
+import Item from "../components/Item/Item";
+import Request from "../components/Request/Request";
 
 const Catalog = ({type,data}) => {
     return (
