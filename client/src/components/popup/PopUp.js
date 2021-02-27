@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { Dialog, DialogTitle, DialogContent, withStyles, Typography } from '@material-ui/core';
-import Controls from "../controls/Controls";
+import Controls from "../Controls/Controls";
 import CloseIcon from '@material-ui/icons/Close';
 
 const style = theme => ({
