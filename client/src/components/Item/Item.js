@@ -12,7 +12,8 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import "./item.css";
 import imgPath from '../../img/cutiecompact.jpg'
 
-const Item = ({ item, asRequest }) => {
+const Item = ({ item, asRequest,addHandler }) => {
+
     // console.log(`${JSON.stringify(item)}, ${item.item.name}`)
     return (
         <Card className="item-card">
@@ -20,7 +21,7 @@ const Item = ({ item, asRequest }) => {
                 component="img"
                 height="200"
                 className="card-image"
-                image={imgPath}
+                // image={imgPath}
             />
             <CardContent className="content">
                 <Typography
@@ -119,7 +120,8 @@ const Item = ({ item, asRequest }) => {
                 size="large"
                 className="button"
                 color="primary"
-                onClick={() => { console.log('button click') }}
+                onClick={() => { console.log('button click') 
+            addHandler() }}
             >
                 <AddCircleOutlineIcon /> Add to request
               </Button>

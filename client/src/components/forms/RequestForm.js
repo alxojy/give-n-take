@@ -5,11 +5,11 @@ import Controls from '../Controls/Controls';
 import Toolbar from '@material-ui/core/Toolbar';
 import { useForm, Form } from '../hooks/useForm';
 import TextField from '@material-ui/core/TextField';
-import Catalog from '../Catalog';
+import Catalog from '../Catalog/Catalog';
 import ItemData from '../../dummyData/itemData.json';
 import SearchIcon from '@material-ui/icons/Search';
 import ItemList from '../../api/items';
-import ItemCatalog from '../ItemCatalog.js/ItemCatalog';
+import ItemCatalog from '../Catalog/ItemCatalog';
 import Spinner from '../Spinner/Spinner';
 
 
@@ -61,7 +61,7 @@ const RequestForm = (props) => {
     const [itemList] = ItemList(null);
 
     const [filteredItem, setFilteredItem] = useState(itemList)
-    
+
     useEffect(() => {
         setFilteredItem(itemList)
     }, [itemList])
@@ -111,6 +111,15 @@ const RequestForm = (props) => {
             setFilteredItem(itemList.filter(x => x.name.toLowerCase().includes(target.value.toLowerCase()) || x.type.toLowerCase().includes(target.value.toLowerCase())))
     }
 
+    const addItems = (item) => {
+        console.log(`add items : ${item}`)
+        const searchResult = selectedItems.find(({ name }) => name === item.name)
+        if (!searchResult) {
+            const newSelected = selectedItems.concat(item);
+            setSelectedItems(newSelected);
+        }
+
+    }
 
     // const filter = () => {
     //     if (target.value == "")
@@ -164,13 +173,15 @@ const RequestForm = (props) => {
                                 <Typography color="textSecondary" align="center">
                                     No items yet. Please select items from the item catalog.
                             </Typography>
-                            </div>) : (<Paper><Typography>{selectedItems.length}</Typography> <Controls.Button
+                            </div>) : (<>
+                                <ItemCatalog data={selectedItems} />
+                                <Controls.Button
                                 type="submit"
                                 text="Submit" />
                                 <Controls.Button
                                     text="Reset"
                                     color="default"
-                                    onClick={resetForm} /></Paper>)}
+                                    onClick={resetForm} /></>)}
 
                     </Container>
 
@@ -200,14 +211,14 @@ const RequestForm = (props) => {
                                                     disableUnderline: true,
                                                     className: classes.searchInput,
                                                 }}
-                                                onChange = {(event)=>handleSearch(event)}
+                                                onChange={(event) => handleSearch(event)}
                                             />
                                         </Grid>
                                     </Grid>
                                 </Toolbar>
                             </AppBar>
                             <Container maxWidth="md">
-                                {filteredItem ? <ItemCatalog data={filteredItem} /> : <Spinner />}
+                                {filteredItem ? <ItemCatalog data={filteredItem} addHandler={addItems} /> : <Spinner />}
                             </Container>
                         </Paper>
                     </Container>

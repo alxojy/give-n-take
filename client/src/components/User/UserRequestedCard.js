@@ -31,26 +31,26 @@ const useStyles = makeStyles({
   });
 
 
-const UserDonatedCard = ({data}) => {
+const UserRequestedCard = ({data}) => {
     const classes = useStyles();
-    const [receiver, setReceiver] = useState(null);
-    const [donation, setDonation] = useState(null);
-    const [donationAmt, setDonationAmt] = useState(0);
+    // const [receiver, setReceiver] = useState(null);
+    // const [donation, setDonation] = useState(null);
+    // const [donationAmt, setDonationAmt] = useState(0);
 
-    useEffect(async () => {
-        const receiverRes = await axios.get(`http://localhost:5000/user/${data.request.user}`)
-        setReceiver(receiverRes.data)
+    // useEffect(async () => {
+    //     const receiverRes = await axios.get(`http://localhost:5000/user/${data.request.user}`)
+    //     setReceiver(receiverRes.data)
 
-        const donationRes = await axios.get(`http://localhost:5000/donation/${data._id}`)
-        setDonation(donationRes.data)
-        let totalAmt = 0;
-        donationRes.data.donationItem.map(item => {
-            console.log(item)
-            let amt = item.quantity * item.item.price;
-            totalAmt += amt;
-        })
-        setDonationAmt(totalAmt);
-    }, [data])
+    //     const donationRes = await axios.get(`http://localhost:5000/donation/${data._id}`)
+    //     setDonation(donationRes.data)
+    //     let totalAmt = 0;
+    //     donationRes.data.donationItem.map(item => {
+    //         console.log(item)
+    //         let amt = item.quantity * item.item.price;
+    //         totalAmt += amt;
+    //     })
+    //     setDonationAmt(totalAmt);
+    // }, [data])
 
     return (
         <Card className={classes.root}>
@@ -67,20 +67,20 @@ const UserDonatedCard = ({data}) => {
                     variant="h6"
                     component="h2"
                 >
-                    {data.request.title}
+                    {data.title}
                 </Typography>
 
-                <Typography className={classes.title} gutterBottom>
+                {/* <Typography className={classes.title} gutterBottom>
                     Receiver: {receiver ? receiver.name : null}
-                </Typography>
-                <Typography className={classes.title} gutterBottom>
+                </Typography> */}
+                {/* <Typography className={classes.title} gutterBottom>
                     Donated amount: RM{donationAmt}
                 </Typography>
                 <Typography className={classes.title} gutterBottom>
                     Donated items amount: {donation ? donation.donationItem.length : 0}
-                </Typography>
+                </Typography> */}
                 <Typography className={classes.title} gutterBottom>
-                    Date: {data.date.substring(0, 10)}
+                    Date: {data.requestDate.substring(0, 10)}
                 </Typography>
             </CardContent>
         </Card>
@@ -100,4 +100,4 @@ const UserDonatedCard = ({data}) => {
     )
 }
 
-export default UserDonatedCard;
+export default UserRequestedCard;
