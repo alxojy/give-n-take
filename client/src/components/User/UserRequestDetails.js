@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import { 
     Card,
     CardMedia,
@@ -11,13 +13,12 @@ import UserRequestedCard from './UserRequestedCard';
 
 const UserRequestDetails = ({requestData}) => {
     let renderedList = null;
-
+    
     if (requestData) {
         renderedList = requestData.map((data) => {
             return (
                 <Grid key={data._id} item sm={4} md={3}>
                     <UserRequestedCard data={data}/>
-
                 </Grid>
             )
         })

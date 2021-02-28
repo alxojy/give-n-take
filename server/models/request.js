@@ -11,6 +11,7 @@ const requestSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    image: String,
     fulfilledDate: Date,
 })
 

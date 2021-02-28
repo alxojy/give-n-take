@@ -37,7 +37,7 @@ const UserProfile = props => {
         <Grid container className={classes.root}>
             <div className={classes.pageHeader} >
                 <Grid item md={12} lg={12} style={{textAlign: 'center'}}>
-                    <img src={banner} className={classes.banner} /> 
+                    {/* <img src={banner} className={classes.banner} />  */}
                 </Grid>
                 <Box p={5}>
                 <UserIndex userData={userData} donationData={donationDetails} requestData={requestDetails}/>            

@@ -82,7 +82,7 @@ const HomePage = props => {
         const getTopThreeRequests = async () => {
             const res = await requestAPI.getAllRequests();
             if (res.status === 200) {
-                setTopRequests(res.data.slice(0,4));
+                setTopRequests(res.data.slice(0,3));
             }
         }
 

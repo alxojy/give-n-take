@@ -32,19 +32,19 @@ LinearProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-
 const Request = (props) => {
 
     const [val, setVal] = useState(Math.random() * 100);
 
     return (
         <Card className="request-card">
-            <CardActionArea>
+            <CardActionArea onClick={() => props.openPopUp(props.id)}>
                 <CardMedia
                     component="img"
                     height="260"
                     className="card-image"
-                // image={product.media.source}
+                image={`data:image/jpeg;base64,${props.request.image}`}
+                
                 />
                 <CardContent className="content">
                         <Grid container justify="space-between">  
@@ -76,6 +76,7 @@ const Request = (props) => {
                     </Box>
                 </CardContent>
             </CardActionArea>
+
       </Card >
     );
   };

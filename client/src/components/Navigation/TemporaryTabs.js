@@ -1,5 +1,6 @@
-import React,{useState} from "react";
-import { Tabs, Tab, AppBar } from "@material-ui/core";
+import React,{useState, useEffect} from "react";
+import { makeStyles } from '@material-ui/core/styles';
+import { Tabs, Tab, AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import RequestData from '../../dummyData/requestData.json';
 import ItemData from '../../dummyData/itemData.json';
 import Catalog from "../Catalog/Catalog";
@@ -19,43 +20,69 @@ import Spinner from "../Spinner/Spinner";
 import ItemCatalog from "../Catalog/ItemCatalog";
 import UserProfile from "../../pages/UserProfile";
 
-const TemporaryTabs = props => {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  tabs: {
+    flexGrow: 1,
+  },
+  user: {
+    flexGrow:1 ,
+    marginRight: '10px',
+  }
+}));
 
-const [selectedTab, setSelectedTab] = useState(0);
-const [itemList] = ItemList(null);
-const [userData, donationDetails, requestDetails] = UserData(null);
+
+const TemporaryTabs = props => {
+  const classes = useStyles();
+  const [itemList] = ItemList(null);
+  const [selectedTab, setSelectedTab] = useState(0);
+  const [userData, donationDetails, requestDetails] = UserData(null);
 
 const handleChange = (event, newValue) => {
 // history.push(`/home/${tabNameToIndex[newValue]}`);
 setSelectedTab(newValue);
 };
 
-
+// x
 return (
 <>
-<AppBar position="static" color="transparent">
-<Tabs value={selectedTab} onChange={handleChange}>
-<Tab label="Home" />
-<Tab label="Item Catalog" />
-<Tab label="Requests List" />
-<Tab label="Request Details" />
-<Tab label="New Request Form" />
-<Tab label="User" />
-<Tab label="Sign Up Form" />
-<Tab label="Donation Page" />
-<Tab label="User Page" />
-</Tabs>
-</AppBar>
+
+<div className={classes.root}>
+  <AppBar position="static" color="transparent">
+    <Toolbar className={classes.tabs}>
+
+      <Tabs value={selectedTab} onChange={handleChange}>
+      <Tab label="Home" />
+      {/* <Tab label="My Account" /> */}
+      <Tab label="New Request" value = {2}/>
+      <Tab label="Donate"value = {3} />
+      </Tabs>
+      
+      <Typography
+          className="title"
+          gutterBottom
+          variant="h5"
+          component="h2"
+          className={classes.user}
+      >
+      </Typography>
+      <Button color="inherit"
+        onClick={() => { setSelectedTab(1);}}>Welcome, {userData ? userData.name : null}</Button>
+    </Toolbar>
+  </AppBar>
+
+</div>
+
 
 {selectedTab === 0 && <HomePage />}
-{selectedTab === 1 && <Catalog type = {"item"} data = {ItemData.items}/>}
-{selectedTab === 2 && <Catalog type = {"request"} data = {RequestData.requests}/>}
-{selectedTab === 3 && <RequestDetail request = {RequestData.request}/>}
-{selectedTab === 4 && <RequestForm/>}
-{selectedTab === 5 && <UserIndex userData={userData} donationData={donationDetails} requestData={requestDetails}/>}
-{selectedTab === 6 && <SignUpForm/>}
-{selectedTab === 7 && <DonationPage/>}
-{selectedTab === 8 && <UserProfile/>}
+{selectedTab === 1 && <UserIndex userData={userData} donationData={donationDetails} requestData={requestDetails}/>}
+{selectedTab === 2 && <RequestForm/>}
+{selectedTab === 3 && <DonationPage/>}
 </>
 );
 };
