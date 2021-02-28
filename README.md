@@ -1,13 +1,7 @@
-# give & take
+# iNTUition v7.0 - give & take
 
 By the community, for the needy.
 
-<img src="https://github.com/alxojy/iNTUition-v7.0/blob/main/images/home.jpg" width="900">
-<img src="https://github.com/alxojy/iNTUition-v7.0/blob/main/images/donation.jpg" width="900">
-<img src="https://github.com/alxojy/iNTUition-v7.0/blob/main/images/user.jpg" width="900">
-
-
-## iNTUition v7.0
 ## Inspiration
 **Unemployment due to Covid-19**  
 Hundreds of thousands of Malaysians have lost their jobs due to the Covid-19 pandemic. As a result, these Malaysians are suffering and undergoing extreme hardships to put food on the table for their families. 
@@ -59,3 +53,7 @@ This platform connects the people in need with kind-hearted individuals who will
 - Get funding from investors to make our prototype a reality 
 - Launch our project in phases starting from Malaysia to SEA 
 
+## Screenshots of our project
+<img src="https://github.com/alxojy/iNTUition-v7.0/blob/main/images/home.jpg" width="900">
+<img src="https://github.com/alxojy/iNTUition-v7.0/blob/main/images/donation.jpg" width="900">
+<img src="https://github.com/alxojy/iNTUition-v7.0/blob/main/images/user.jpg" width="900">
