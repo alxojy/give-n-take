@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import { 
     Card,
     CardMedia,
@@ -11,7 +13,7 @@ import UserRequestedCard from './UserRequestedCard';
 
 const UserRequestDetails = ({requestData}) => {
     let renderedList = null;
-
+    
     if (requestData) {
         renderedList = requestData.map((data) => {
             return (
