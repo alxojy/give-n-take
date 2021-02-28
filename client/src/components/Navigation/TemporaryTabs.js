@@ -57,11 +57,9 @@ return (
 
       <Tabs value={selectedTab} onChange={handleChange}>
       <Tab label="Home" />
-      <Tab label="Item Catalog" />
-      <Tab label="Requests List" />
-      <Tab label="Request Details" />
-      <Tab label="New Request Form" />
-      <Tab label="Sign Up Form" value={6}/>
+      <Tab label="My Account" />
+      <Tab label="New Request" />
+      <Tab label="Donate" />
       </Tabs>
       
       <Typography
@@ -73,7 +71,7 @@ return (
       >
       </Typography>
       <Button color="inherit"
-        onClick={() => { setSelectedTab(5);}}>Welcome, {userData ? userData.name : null}</Button>
+        onClick={() => { setSelectedTab(3);}}>Welcome, {userData ? userData.name : null}</Button>
     </Toolbar>
   </AppBar>
 
@@ -81,12 +79,9 @@ return (
 
 
 {selectedTab === 0 && <HomePage />}
-{selectedTab === 1 && <Catalog type = {"item"} data = {ItemData.items}/>}
-{selectedTab === 2 && <RequestDetail request = {RequestData.request}/>}
-{selectedTab === 3 && <RequestForm/>}
-{selectedTab === 4 && <UserIndex userData={userData} donationData={donationDetails} requestData={requestDetails}/>}
-{selectedTab === 5 && <SignUpForm/>}
-{selectedTab === 6 && <DonationPage/>}
+{selectedTab === 1 && <UserIndex userData={userData} donationData={donationDetails} requestData={requestDetails}/>}
+{selectedTab === 2 && <RequestForm/>}
+{selectedTab === 3 && <DonationPage/>}
 </>
 );
 };
