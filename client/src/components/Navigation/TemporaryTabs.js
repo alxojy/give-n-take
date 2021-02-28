@@ -3,16 +3,21 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import RequestData from '../../dummyData/requestData.json';
 import ItemData from '../../dummyData/itemData.json';
-import Catalog from "../../components/Catalog";
+import Catalog from "../Catalog/Catalog";
 import HomePage from "../../pages/HomePage";
 import RequestDetail from "../Request/RequestDetail";
 import RequestForm from "../Forms/RequestForm";
 import UserIndex from '../User/UserIndex.js';
 import SignUpForm from "../Forms/SignUpForm";
+import DonationPage from "../../pages/DonationPage";
 
 
 // Data
 import UserData from '../../hooks/UserAPI.js';
+import ItemList from '../../api/items';
+import { getAllItems } from "../../api/items";
+import Spinner from "../Spinner/Spinner";
+import ItemCatalog from "../Catalog/ItemCatalog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,8 +35,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
 const TemporaryTabs = props => {
   const classes = useStyles();
+  const [itemList] = ItemList(null);
   const [selectedTab, setSelectedTab] = useState(0);
   const [userData, donationDetails, requestDetails] = UserData(null);
 
@@ -40,8 +47,10 @@ const handleChange = (event, newValue) => {
 setSelectedTab(newValue);
 };
 
+// x
 return (
 <>
+
 <div className={classes.root}>
   <AppBar position="static" color="transparent">
     <Toolbar className={classes.tabs}>
@@ -70,13 +79,14 @@ return (
 
 </div>
 
+
 {selectedTab === 0 && <HomePage />}
 {selectedTab === 1 && <Catalog type = {"item"} data = {ItemData.items}/>}
-{selectedTab === 2 && <Catalog type = {"request"} data = {RequestData.requests}/>}
-{selectedTab === 3 && <RequestDetail request = {RequestData.request}/>}
-{selectedTab === 4 && <RequestForm/>}
-{selectedTab === 5 && <UserIndex userData={userData} donationData={donationDetails} requestData={requestDetails}/>}
-{selectedTab === 6 && <SignUpForm/>}
+{selectedTab === 2 && <RequestDetail request = {RequestData.request}/>}
+{selectedTab === 3 && <RequestForm/>}
+{selectedTab === 4 && <UserIndex userData={userData} donationData={donationDetails} requestData={requestDetails}/>}
+{selectedTab === 5 && <SignUpForm/>}
+{selectedTab === 6 && <DonationPage/>}
 </>
 );
 };

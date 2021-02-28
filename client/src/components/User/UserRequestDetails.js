@@ -19,7 +19,6 @@ const UserRequestDetails = ({requestData}) => {
             return (
                 <Grid key={data._id} item sm={4} md={3}>
                     <UserRequestedCard data={data}/>
-
                 </Grid>
             )
         })

@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import { makeStyles, CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core';
 
+import HomePage from "./pages/HomePage";
+// import theme from "./components/theme"
 import TemporaryTabs from './components/Navigation/TemporaryTabs';
 
 const theme = createMuiTheme({

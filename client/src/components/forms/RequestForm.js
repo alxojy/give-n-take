@@ -1,16 +1,73 @@
 import React, { useState, useEffect } from 'react'
-import { Divider, Grid, Typography, } from '@material-ui/core';
+import { Divider, Grid, Paper, Typography, Container, AppBar } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import Controls from '../Controls/Controls';
+import Toolbar from '@material-ui/core/Toolbar';
 import { useForm, Form } from '../hooks/useForm';
+import TextField from '@material-ui/core/TextField';
+import Catalog from '../Catalog/Catalog';
+import ItemData from '../../dummyData/itemData.json';
+import SearchIcon from '@material-ui/icons/Search';
+import ItemList from '../../api/items';
+import ItemCatalog from '../Catalog/ItemCatalog';
+import Spinner from '../Spinner/Spinner';
 
+
+const styles = (theme) => ({
+    paper: {
+        maxWidth: 936,
+        margin: 'auto',
+        overflow: 'hidden',
+    },
+    searchBar: {
+        borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+        marginBottom: 20
+    },
+    searchInput: {
+        fontSize: theme.typography.fontSize,
+    },
+    block: {
+        display: 'block',
+    },
+    contentWrapper: {
+        margin: '40px 16px',
+    },
+    container: {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(5),
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    item: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: theme.spacing(0, 5),
+    },
+    title: {
+        marginBottom: theme.spacing(5),
+    }
+});
 
 const initialFValues = {
     title: '',
     description: '',
 }
 
-const RequestForm = () => {
-    // const { addOrEdit, recordForEdit } = props
+const RequestForm = (props) => {
+    const { classes } = props;
+    const [itemList] = ItemList(null);
+
+    const [filteredItem, setFilteredItem] = useState(itemList)
+
+    useEffect(() => {
+        setFilteredItem(itemList)
+    }, [itemList])
+
+    const [selectedItems, setSelectedItems] = useState([]);
+    const [selectedQuantity, setSelectedQuantity] = useState([0])
 
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
@@ -39,63 +96,160 @@ const RequestForm = () => {
         resetForm
     } = useForm(initialFValues, true, validate);
 
-    // const handleSubmit = e => {
-    //     e.preventDefault()
-    //     if (validate()) {
-    //         addOrEdit(values, resetForm);
-    //     }
-    // }
+    const handleSubmit = e => {
+        e.preventDefault()
+        if (validate()) {
+            console.log(`${JSON.stringify(values)}`)
+        }
+    }
 
-    // useEffect(() => {
-    //     if (recordForEdit != null)
-    //         setValues({
-    //             ...recordForEdit
-    //         })
-    // }, [recordForEdit])
+    const handleSearch = e => {
+        let target = e.target;
+        console.log(`target ${target.value}`);
+        if (!target.value)
+            setFilteredItem(itemList);
+        else
+            setFilteredItem(itemList.filter(x => x.name.toLowerCase().includes(target.value.toLowerCase()) || x.type.toLowerCase().includes(target.value.toLowerCase())))
+    }
 
+    // add to request handler
+    const addItems = (item) => {
+        // check if item already selected
+        const searchResult = selectedItems.find(({ name }) => name === item.name)
+        if (!searchResult) {
+            // console.log(`selectedQuantity : ${selectedQuantity},${selectedQuantity instanceof Array}`)
+
+            // if not add to list of selected items 
+            const newSelectedQuantity = [...selectedQuantity]
+            newSelectedQuantity.push(0)
+            // console.log(`newSelecteydQuantity : ${newSelectedQuantity}`)
+            // console.log(`selectedQuantit : ${selectedQuantity},${selectedQuantity instanceof Array}`)
+
+            const newSelected = selectedItems.concat(item);
+            setSelectedQuantity(newSelectedQuantity);
+            setSelectedItems(newSelected);
+        }
+    }
+
+    const increment = (index) => {
+        // console.log(`increment : ${index}`)
+        // console.log(`selectedQuantity : ${selectedQuantity},${selectedQuantity instanceof Array}`)
+        selectedQuantity[index] += 1;
+        const newSelectedQuantity = [...selectedQuantity];
+        setSelectedQuantity(newSelectedQuantity);
+    }
+
+    const decrement = (index) => {
+        console.log(`decrement : ${index}`)
+        const newSelectedQuantity = [...selectedQuantity];
+
+        if (newSelectedQuantity[index] > 0) {
+            newSelectedQuantity[index] -= 1 };
+        setSelectedQuantity(newSelectedQuantity);
+    }
+
+    const reset = () => {
+        setSelectedQuantity([]);
+        setSelectedItems([]);
+    }
     return (
-        // <Form onSubmit={handleSubmit}>
-        <Form>
-            <Grid container spacing= {2}>
+        <Form onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <Controls.Input
-                        name="title"
-                        label="Request Title"
-                        value={values.title}
-                        onChange={handleInputChange}
-                        error={errors.title}
-                    />
-                    <Controls.Input
-                        label="Description"
-                        name="description"
-                        multiline
-                        rows={4}
-                        value={values.description}
-                        onChange={handleInputChange}
-                        error={errors.description}
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <Divider/>
-                    <Typography
+                    <Container className={classes.container}>
+
+                        <Typography
                             gutterBottom
                             variant="h5"
                             component="h2"
-                        >Requests</Typography>
+                        >CREATE NEW REQUEST</Typography>
 
-                    <div>
-                        <Controls.Button
-                            type="submit"
-                            text="Submit" />
-                        <Controls.Button
-                            text="Reset"
-                            color="default"
-                            onClick={resetForm} />
-                    </div>
+                        <Controls.Input
+                            name="title"
+                            label="Request Title"
+                            value={values.title}
+                            onChange={handleInputChange}
+                            error={errors.title}
+                        />
+                        <Controls.Input
+                            label="Description"
+                            name="description"
+                            multiline
+                            rows={4}
+                            value={values.description}
+                            onChange={handleInputChange}
+                            error={errors.description}
+                        />
+                    </Container>
+
                 </Grid>
+                <Grid item xs={12}>
+                    <Divider />
+                    <Container className={classes.container}>
+
+                        <Typography variant="h5" marked="center" className={classes.title} component="h2">
+                            REQUEST ITEMS
+                            </Typography>
+
+                        {selectedItems.length == 0 ?
+                            (<div className={classes.contentWrapper}>
+                                <Typography color="textSecondary" align="center">
+                                    No items yet. Please select items from the item catalog.
+                            </Typography>
+                            </div>) : (<Container maxWidth = {200}>
+                                <Catalog type = "new-item-request" data={selectedItems} changeQuantityHandler = {{increment,decrement,selectedQuantity}} />
+                                <Controls.Button
+                                type="submit"
+                                text="Submit" />
+                                <Controls.Button
+                                    text="Reset"
+                                    color="default"
+                                    onClick={reset} /></Container>)}
+
+                    </Container>
+
+                </Grid>
+                <Grid item xs={12}>
+                    <Divider />
+                    <Container className={classes.container}>
+
+                        <Typography
+                            gutterBottom
+                            variant="h5"
+                            component="h2"
+                        >ITEM CATALOG</Typography>
+
+                        <Paper className={classes.paper} elevation={3}>
+                            <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
+                                <Toolbar>
+                                    <Grid container spacing={2} alignItems="center">
+                                        <Grid item>
+                                            <SearchIcon className={classes.block} color="inherit" />
+                                        </Grid>
+                                        <Grid item xs>
+                                            <TextField
+                                                fullWidth
+                                                placeholder="Search by item name / type"
+                                                InputProps={{
+                                                    disableUnderline: true,
+                                                    className: classes.searchInput,
+                                                }}
+                                                onChange={(event) => handleSearch(event)}
+                                            />
+                                        </Grid>
+                                    </Grid>
+                                </Toolbar>
+                            </AppBar>
+                            <Container maxWidth="md">
+                                {filteredItem ? <ItemCatalog data={filteredItem} addHandler={addItems} /> : <Spinner />}
+                            </Container>
+                        </Paper>
+                    </Container>
+                </Grid>
+
             </Grid>
         </Form>
     )
 }
 
-export default RequestForm;
+export default withStyles(styles)(RequestForm);

@@ -1,7 +1,6 @@
 import React from 'react'
-import { AppBar, Toolbar, Grid, IconButton, Badge, withStyles } from '@material-ui/core'
+import { AppBar, Toolbar, Grid, IconButton, Badge, withStyles, List, ListItem } from '@material-ui/core'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-
 
 const style = () => ({
     root: {
@@ -11,11 +10,51 @@ const style = () => ({
 );
 
 const NavBar = props => {
+    // const classes = useStyles();
+
     const { classes } = props;
 
     return (
-        
-        // <AppBar position="static" className={classes.root}>
+      <>
+      {/* <Header
+            brand="Navbar with profile"
+            rightLinks={
+              <List className={classes.list}>
+                <ListItem className={classes.listItem}>
+                  <Button
+                    href="#pablo"
+                    className={classes.navLink}
+                    onClick={e => e.preventDefault()}
+                    color="transparent"
+                  >
+                    Discover
+                  </Button>
+                </ListItem>
+                <ListItem className={classes.listItem}>
+                  <Button
+                    href="#pablo"
+                    className={classes.navLink}
+                    onClick={e => e.preventDefault()}
+                    color="transparent"
+                  >
+                    Wishlist
+                  </Button>
+                </ListItem>
+                <ListItem className={classes.listItem}>
+                  <Button
+                    href="#pablo"
+                    className={classes.registerNavLink}
+                    onClick={e => e.preventDefault()}
+                    color="rose"
+                    round
+                  >
+                    Register
+                  </Button>
+                </ListItem>
+              </List>
+            }
+          /> */}
+        {/* // <AppBar position="static" className={classes.root}> */}
         <AppBar position="fixed" className={classes.navbar}>
         <Toolbar>
                 <Grid container alignItems="center">
@@ -37,6 +76,7 @@ const NavBar = props => {
                 </Grid>
             </Toolbar>
         </AppBar>
+        </>
     )
 }
 
