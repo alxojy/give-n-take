@@ -58,7 +58,7 @@ const UserRequestedCard = ({data}) => {
                     component="img"
                     height="150"
                     className="card-image"
-                // image={product.media.source}
+                    image={`data:image/jpeg;base64,${data.image}`}
                 />
             <CardContent className="content">
                 <Typography
