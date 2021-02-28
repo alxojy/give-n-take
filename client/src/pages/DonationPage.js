@@ -19,9 +19,9 @@ import DetailedRequest from "../components/Request/DetailedRequest";
 import Button from "../components/Controls/Button";
 import RequestData from '../dummyData/requestData.json';
 import DonationData from '../hooks/DonationAPI.js';
-import "./DonationPage.css";
 
 import banner from '../assets/donation_page.png';
+import Spinner from '../components/Spinner/Spinner';
 import Modal from 'react-modal';
 
 const style = theme => ({
@@ -155,14 +155,7 @@ const DonationPage = props => {
                 </Box>
             </div>
         </Grid>
-        
-
-        ): (
-        <div>
-            {"Loading"}
-        </div>
-        
-    )
+        ): <Spinner/>
 };
 
 export default withStyles(style)(DonationPage);

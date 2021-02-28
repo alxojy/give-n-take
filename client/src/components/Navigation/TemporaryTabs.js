@@ -18,6 +18,7 @@ import ItemList from '../../api/items';
 import { getAllItems } from "../../api/items";
 import Spinner from "../Spinner/Spinner";
 import ItemCatalog from "../Catalog/ItemCatalog";
+import UserProfile from "../../pages/UserProfile";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,9 +58,9 @@ return (
 
       <Tabs value={selectedTab} onChange={handleChange}>
       <Tab label="Home" />
-      <Tab label="My Account" />
-      <Tab label="New Request" />
-      <Tab label="Donate" />
+      {/* <Tab label="My Account" /> */}
+      <Tab label="New Request" value = {2}/>
+      <Tab label="Donate"value = {3} />
       </Tabs>
       
       <Typography
@@ -71,7 +72,7 @@ return (
       >
       </Typography>
       <Button color="inherit"
-        onClick={() => { setSelectedTab(3);}}>Welcome, {userData ? userData.name : null}</Button>
+        onClick={() => { setSelectedTab(1);}}>Welcome, {userData ? userData.name : null}</Button>
     </Toolbar>
   </AppBar>
 
