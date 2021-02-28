@@ -74,7 +74,7 @@ const DonationPage = props => {
                                         component="img"
                                         height="300"
                                         className="card-image"
-                                    // image={product.media.source}
+                                        image={`data:image/jpeg;base64,${donationData[activeRequest].image}`}
                                     />
                                 </Grid>
                                 <Grid item xs={12} md={7}>
@@ -114,8 +114,8 @@ const DonationPage = props => {
                                     <Grid container spacing={2}>
 
                                         {donationData[activeRequest].itemRequests.map(item => (
-                                            <Grid key={item.name} item xs={6} sm={4} className="request-item-wrapper">
-                                                <Item item={item} className="request-item" asRequest = {true}/>
+                                            <Grid key={item.item.name} item xs={6} sm={4} className="request-item-wrapper">
+                                                <Item item={item.item} className="request-item" asRequest = {true}/>
                                             </Grid>
                                         ))}
                                     </Grid>

@@ -43,7 +43,8 @@ const Request = (props) => {
                     component="img"
                     height="260"
                     className="card-image"
-                // image={product.media.source}
+                image={`data:image/jpeg;base64,${props.request.image}`}
+                
                 />
                 <CardContent className="content">
                         <Grid container justify="space-between">  

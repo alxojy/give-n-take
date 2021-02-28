@@ -15,14 +15,15 @@ import imgPath from '../../img/cutiecompact.jpg'
 
 const Item = ({ item, asRequest, newRequest, addHandler, onChange }) => {
 
-    // console.log(`${JSON.stringify(item)}, ${item.item.name}`)
+    console.log(item)
     return (
         <Card className="item-card">
             <CardMedia
                 component="img"
                 height="200"
                 className="card-image"
-                image={imgPath}
+                // image={imgPath}
+                image={`data:image/jpeg;base64,${item.image}`}
             />
             <CardContent className="content">
                 <Typography
