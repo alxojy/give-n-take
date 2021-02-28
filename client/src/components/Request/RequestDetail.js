@@ -6,8 +6,8 @@ import {
     Button,
     Grid,
     Divider,
+    Container,
 } from "@material-ui/core";
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import Item from "../Item/Item";
 
 const RequestDetail = ({ request }) => {
@@ -18,7 +18,7 @@ const RequestDetail = ({ request }) => {
                     <Grid item xs={12} md={6}>
                         <CardMedia
                             component="img"
-                            height="260"
+                            height="400"
                             className="card-image"
                         // image={product.media.source}
                         />
@@ -47,8 +47,8 @@ const RequestDetail = ({ request }) => {
 
                 <Grid containter item xs={12} >
                 <Divider variant="middle" />
-
-                    <CardContent className="content">
+                    <Container maxWidth="md">
+                    <CardContent className="content" >
                         <Typography
                             className="title"
                             gutterBottom
@@ -60,35 +60,14 @@ const RequestDetail = ({ request }) => {
                         <Grid container spacing={4}>
 
                             {request.request_items.map(item => (
-                                <Grid key={item.id} item xs={12} sm={6} md={4} lg = {3}>
+                                <Grid key={item.id} item xs={6} sm={4} >
                                     <Item item={item} asRequest = {true}/>
                                 </Grid>
                             ))}
                         </Grid>
-
                     </CardContent>
-
+                    </Container>
                 </Grid>
-
-                <div className="content">
-                    {/* <Typography
-                    className="price"
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                >
-                    {`RM${request.request.price}`}
-                </Typography> */}
-                    <Button
-                        size="large"
-                        className="button"
-                        onClick={() => {
-                            console.log('button click')
-                        }}
-                    >
-                        <ShoppingBasketIcon /> Add to donation cart
-              </Button>
-                </div >
             </Grid>
         </Card >
     );

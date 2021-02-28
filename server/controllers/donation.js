@@ -5,6 +5,7 @@ import Donation from '../models/donation.js';
 import DonationItem from '../models/donationItem.js';
 import Item from '../models/item.js';
 import Request from '../models/request.js';
+import ItemRequest from '../models/itemRequest.js';
 
 const router = express.Router();
 
@@ -41,14 +42,50 @@ export const createDonation = async (req, res) => {
     const newDonation = new Donation({donor, request});
 
     try {
+        // insert donation
         await newDonation.save().then(res => {
             items.forEach(async item => {
+
+                // insert donation x item
                 await new DonationItem({
                     donation: res._id, 
                     item: item._id, 
                     quantity: item.quantity
-                }).save()
-            })
+                }).save();
+
+                // update quantity
+                var doc = await ItemRequest.findOneAndUpdate({
+                    request: request,
+                    item: item._id
+                }, {
+                    $inc: {
+                        quantity: -item.quantity
+                    }
+                }, {
+                    new: true
+                }).then( async doc => {
+                    // check if all zeros
+                    if (await (doc.quantity === 0)) {
+                        await ItemRequest.find(
+                            { request }
+                        ).then(async doc => {
+                            var allFulfilled = doc.map(ir => {
+                                return ir.toObject().quantity;
+                            }).every(async q => {
+                                q.toString() === "0"
+                            })
+                            // update fulfilledDate
+                            if (allFulfilled) {
+                                await Request.findOneAndUpdate({
+                                    _id: request
+                                }, {
+                                    fulfilledDate: Date.now()
+                                });    
+                            }
+                        })
+                    }
+                });
+            });
         });
         res.status(201).json(newDonation);
     } 

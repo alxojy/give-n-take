@@ -11,7 +11,8 @@ export default function RadioGroup(props) {
             <MuiRadioGroup row
                 name={name}
                 value={value}
-                onChange={onChange}>
+                onChange={onChange}
+                color ='#026670'>
                 {
                     items.map(
                         item => (
